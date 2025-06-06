@@ -1,13 +1,6 @@
 package br.com.fiap.zelus.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -15,7 +8,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
 
 @Entity
 @Table(name = "abrigo")
@@ -23,8 +19,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-
-public class Abrigo{
+public class Abrigo implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,12 +36,12 @@ public class Abrigo{
     private String email;
 
     @NotBlank
-    @Size(min = 10) 
+    @Size(min = 10)
     @Column(nullable = false, length = 100)
     private String senha;
 
     @NotBlank
-    @Size(min = 8, max = 9) // CEP com ou sem hífen
+    @Size(min = 8, max = 9)
     @Column(nullable = false)
     private String cep;
 
@@ -54,12 +49,40 @@ public class Abrigo{
     @Column(nullable = false)
     private StatusAbrigo status;
 
-
     public enum StatusAbrigo {
         ATIVO,
         INATIVO,
         BLOQUEADO
     }
 
+    // Implementação dos métodos da interface UserDetails
+    @Override
+    public String getSenhaString() {
+        return senha;
+    }
 
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return status != StatusAbrigo.BLOQUEADO;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return status == StatusAbrigo.ATIVO;
+    }
 }
