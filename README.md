@@ -2,7 +2,7 @@
 
 ## 📌 Descrição
 
-**Zelus** é uma aplicação web desenvolvida com **Spring Boot** para gerenciamento de **abrigos** e **lotes de alimentos**. O sistema oferece cadastro, atualização, listagem e exclusão de abrigos, além do gerenciamento de lotes vinculados a esses abrigos.
+**Zelus** é uma aplicação web desenvolvida com **Spring Boot** para o gerenciamento de **abrigos** e **lotes de alimentos**. O sistema permite o cadastro, atualização, listagem e exclusão de abrigos, além da gestão de lotes vinculados a esses abrigos.
 
 A aplicação implementa **autenticação com tokens JWT**, **controle de acesso por perfil**, **cache de dados** e documentação completa com **Swagger**.
 
@@ -23,9 +23,9 @@ A aplicação implementa **autenticação com tokens JWT**, **controle de acesso
 
 ### 🔐 Autenticação e Segurança
 
-* Login com e-mail e senha usando JWT.
+* Login com e-mail e senha utilizando JWT.
 * Senhas armazenadas com criptografia.
-* Controle de acesso.
+* Controle de acesso por perfil.
 
 ### 🌐 CORS
 
@@ -49,7 +49,7 @@ A aplicação implementa **autenticação com tokens JWT**, **controle de acesso
 * Spring Boot (Web, Security, JPA, Validation)
 * Spring Security + JWT
 * Hibernate / JPA
-* H2 Database (ambiente de desenvolvimento)
+* H2 Database (para ambiente de desenvolvimento)
 * Lombok
 * Swagger/OpenAPI
 * Spring Cache
@@ -59,44 +59,41 @@ A aplicação implementa **autenticação com tokens JWT**, **controle de acesso
 
 ## 🗂 Estrutura do Projeto
 
-´´´bash
+```bash
 src/
 └── main/
     ├── java/
-    │   └── br/
-    │       └── com/
-    │           └── fiap/
-    │               └── zelus/
-    │                   ├── config/
-    │                   │   ├── SecurityConfig.java
-    │                   │   ├── CorsConfig.java
-    │                   │   ├── AuthFilter.java
-    │                   │   └── DataSeeder.java
-    │                   ├── controller/
-    │                   │   ├── AbrigoController.java
-    │                   │   ├── LoteController.java
-    │                   │   └── AuthController.java
-    │                   ├── dto/
-    │                   │   ├── AbrigoDTO.java
-    │                   │   └── LoteDTO.java
-    │                   ├── exception/
-    │                   │   ├── ValidationHandler.java
-    │                   │   └── PesoInvalidoException.java
-    │                   ├── model/
-    │                   │   ├── Abrigo.java
-    │                   │   └── Lote.java
-    │                   ├── repository/
-    │                   │   ├── AbrigoRepository.java
-    │                   │   └── LoteRepository.java
-    │                   ├── service/
-    │                   │   ├── AuthService.java
-    │                   │   ├── LoteService.java
-    │                   │   └── TokenService.java
-    │                   └── specification/
-    │                       └── LoteSpecification.java
+    │   └── br/com/fiap/zelus/
+    │       ├── config/
+    │       │   ├── SecurityConfig.java
+    │       │   ├── CorsConfig.java
+    │       │   ├── AuthFilter.java
+    │       │   └── DataSeeder.java
+    │       ├── controller/
+    │       │   ├── AbrigoController.java
+    │       │   ├── LoteController.java
+    │       │   └── AuthController.java
+    │       ├── dto/
+    │       │   ├── AbrigoDTO.java
+    │       │   └── LoteDTO.java
+    │       ├── exception/
+    │       │   ├── ValidationHandler.java
+    │       │   └── PesoInvalidoException.java
+    │       ├── model/
+    │       │   ├── Abrigo.java
+    │       │   └── Lote.java
+    │       ├── repository/
+    │       │   ├── AbrigoRepository.java
+    │       │   └── LoteRepository.java
+    │       ├── service/
+    │       │   ├── AuthService.java
+    │       │   ├── LoteService.java
+    │       │   └── TokenService.java
+    │       └── specification/
+    │           └── LoteSpecification.java
     └── resources/
-        ├── application.properties
-´´´
+        └── application.properties
+```
 
 ---
 
@@ -105,7 +102,7 @@ src/
 ### Abrigos
 
 * `POST /abrigo`: Criar novo abrigo
-* `GET /abrigo`: Listar abrigos (paginação)
+* `GET /abrigo`: Listar abrigos (com paginação)
 * `GET /abrigo/{id}`: Buscar abrigo por ID
 * `PUT /abrigo/{id}`: Atualizar abrigo
 * `DELETE /abrigo/{id}`: Remover abrigo
@@ -121,7 +118,7 @@ src/
 
 ### Autenticação
 
-* `POST /login`: Login e geração de token JWT
+* `POST /login`: Realizar login e gerar token JWT
 
 ---
 
@@ -145,8 +142,8 @@ cd zelus
 mvn spring-boot:run
 ```
 
-* Acesse a API em `http://localhost:8080`
-* Acesse a documentação Swagger em `http://localhost:8080/swagger-ui/`
+* Acesse a API em: `http://localhost:8080`
+* Acesse o Swagger em: `http://localhost:8080/swagger-ui/`
 
 ### Banco de Dados
 
@@ -200,16 +197,19 @@ curl -X POST http://localhost:8080/lote/abrigo/1 \
 
 ## ℹ️ Observações
 
-* Cache aplicado em listagens (`lotes`, `lotesByAbrigo`, `lotesPaged`).
+* Cache aplicado nas listagens (`lotes`, `lotesByAbrigo`, `lotesPaged`).
 * Apenas abrigos com status `ATIVO` conseguem fazer login.
-* Suporte a CORS para facilitar a integração com frontends.
+* Suporte a CORS para facilitar integração com frontends.
 
 ---
 
 ## 🤝 Integrantes
 
 | Nome Completo                  | RM     |
-| -------------------------------|--------|
+| ------------------------------ | ------ |
 | Hellen Marinho Cordeiro        | 558841 |
 | Heloisa Alves de Mesquita      | 559145 |
 | Júlia Soares Farias dos Santos | 554609 |
+
+---
+
