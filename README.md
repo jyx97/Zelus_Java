@@ -59,6 +59,7 @@ A aplicação implementa **autenticação com tokens JWT**, **controle de acesso
 
 ## 🗂 Estrutura do Projeto
 
+´´´bash
 src/
 └── main/
     ├── java/
@@ -95,7 +96,7 @@ src/
     │                       └── LoteSpecification.java
     └── resources/
         ├── application.properties
-
+´´´
 
 ---
 
