@@ -9,9 +9,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -35,9 +37,9 @@ public class Abrigo implements UserDetails {
     private String email;
 
     @NotBlank
-    @Size(min = 10)
+    @Size(min = 6)
     @Column(nullable = false, length = 100)
-    private String senha;
+    private String password;
 
     @NotBlank
     @Size(min = 8, max = 9)
@@ -49,7 +51,7 @@ public class Abrigo implements UserDetails {
     private StatusAbrigo status;
 
     public StatusAbrigo getStatus() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return status;
     }
 
     public enum StatusAbrigo {
@@ -61,7 +63,7 @@ public class Abrigo implements UserDetails {
     // Implementação dos métodos da interface UserDetails
     @Override
     public String getPassword() {
-        return senha;
+        return password;
     }
 
     @Override
@@ -91,7 +93,6 @@ public class Abrigo implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return List.of(new SimpleGrantedAuthority("ROLE_ABRIGO"));
     }
 }

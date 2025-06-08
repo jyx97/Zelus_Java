@@ -37,7 +37,7 @@ public class DataSeeder {
         var abrigo1 = Abrigo.builder()
             .nome("Banco de Alimentos SP")
             .email("sp@abrigo.org")
-            .senha(passwordEncoder.encode("123456"))
+            .password(passwordEncoder.encode("123456"))
             .cep("01001-000")
             .status(StatusAbrigo.ATIVO)
             .build();
@@ -45,7 +45,7 @@ public class DataSeeder {
         var abrigo2 = Abrigo.builder()
             .nome("Centro Solidário RJ")
             .email("rj@abrigo.org")
-            .senha(passwordEncoder.encode("123456"))
+            .password(passwordEncoder.encode("123456"))
             .cep("20040-020")
             .status(StatusAbrigo.ATIVO)
             .build();
@@ -53,7 +53,7 @@ public class DataSeeder {
         var abrigo3 = Abrigo.builder()
             .nome("Doação Sul")
             .email("sul@abrigo.org")
-            .senha(passwordEncoder.encode("123456"))
+            .password(passwordEncoder.encode("123456"))
             .cep("30110-010")
             .status(StatusAbrigo.INATIVO)
             .build();

@@ -24,7 +24,7 @@ public class SecurityConfig {
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers(HttpMethod.POST, "/users/**").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/abrigo").permitAll()
                     .requestMatchers(HttpMethod.POST, "/login/**").permitAll()
                     .requestMatchers("/swagger-ui/**").permitAll()
                     .requestMatchers("/v3/api-docs/**").permitAll()
